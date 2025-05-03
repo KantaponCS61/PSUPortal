@@ -336,36 +336,35 @@
                       >
                     </v-flex>
                     <v-flex xs12 sm12 md7>
-                      <h4>
-                        <v-checkbox
-                          v-for="checkbox in check"
-                          :key="checkbox.id"
-                          v-model="selectedItem.objective"
-                          :value="checkbox.value"
-                          :label="checkbox.title"
-                          :disabled="enabled1"
-                          hide-details
-                        ></v-checkbox>
+                          <h4>
+                            <v-radio-group
+                              v-model="sourceData.objective"
+                              :rules="[v => !!v || 'Please select one']"
+                              column
+                            >
+                              <v-radio
+                                v-for="checkbox in check"
+                                :key="checkbox.id"
+                                :label="checkbox.title"
+                                :value="checkbox.value"
+                              />
+                              <v-radio
+                                :label="$t('others')"
+                                value="other"
+                              />
+                            </v-radio-group>
 
-                        <v-checkbox
-                          v-model="enabled1"
-                          :label="$t('others')"
-                          hide-details
-                          @change="clearObjectives"
-                        ></v-checkbox>
-
-                        <v-col cols="12">
-                          <v-text-field
-                            :disabled="!enabled1"
-                            :placeholder="$t('pleaseSpecify')"
-                            v-model="selectedItem.objective_other"
-                            outlined
-                            dense
-                            required
-                          ></v-text-field>
-                        </v-col>
-                      </h4>
-                    </v-flex>
+                            <v-text-field
+                              v-if="sourceData.objective === 'other'"
+                              v-model="objective_other"
+                              :placeholder="$t('pleaseSpecify')"
+                              :rules="Rules"
+                              outlined
+                              dense
+                              required
+                            />
+                          </h4>
+                        </v-flex>
 
                     <v-flex xs12 sm12 md3 offset-md1>
                       <v-subheader
@@ -446,34 +445,34 @@
                       >
                     </v-flex>
                     <v-flex xs12 sm12 md7>
-                      <h4>
-                        <v-checkbox
-                          v-for="format in data_format"
-                          :key="format.id"
-                          v-model="selectedItem.data_storage"
-                          :label="format.title"
-                          :value="format.value"
-                          multiple
-                          hide-details
-                        ></v-checkbox>
+                          <h4>
+                            <v-checkbox
+                              v-for="format in data_format"
+                              :key="format.id"
+                              v-model="sourceData.data_storage"
+                              :label="format.title"
+                              :value="format.value"
+                              multiple
+                              hide-details
+                            ></v-checkbox>
 
-                        <v-checkbox
-                          v-model="enabled2"
-                          :label="$t('others')"
-                          hide-details
-                        ></v-checkbox>
-                        <v-col cols="12">
-                          <v-text-field
-                            :disabled="!enabled2"
-                            :placeholder="$t('pleaseSpecify')"
-                            v-model="selectedItem.data_storage_other"
-                            outlined
-                            dense
-                            required
-                          ></v-text-field>
-                        </v-col>
-                      </h4>
-                    </v-flex>
+                            <v-checkbox
+                              v-model="enabled2"
+                              :label="$t('others')"
+                              hide-details
+                            ></v-checkbox>
+                            <v-col cols="12">
+                              <v-text-field
+                                :disabled="!enabled2"
+                                :placeholder="$t('pleaseSpecify')"
+                                v-model="data_storage_other"
+                                outlined
+                                dense
+                                :rules="Rules" required
+                              ></v-text-field>
+                            </v-col>
+                          </h4>
+                        </v-flex>
 
                     <v-flex xs12 sm12 md3 offset-md1>
                       <v-subheader
@@ -987,33 +986,35 @@
                       >
                     </v-flex>
                     <v-flex xs12 sm12 md7>
-                      <h4>
-                        <v-checkbox
-                          v-for="checkbox in check"
-                          :key="checkbox.id"
-                          v-model="selectedItem.objective"
-                          :value="checkbox.value"
-                          :label="checkbox.title"
-                          hide-details
-                        ></v-checkbox>
-                        <v-checkbox
-                          v-model="enabled1"
-                          :label="$t('others')"
-                          hide-details
-                        ></v-checkbox>
-                        <v-col cols="12">
-                          <v-text-field
-                            :disabled="!enabled1"
-                            :placeholder="$t('pleaseSpecify')"
-                            v-model="selectedItem.objective_other"
-                            outlined
-                            dense
-                            required
-                          ></v-text-field>
-                          <!-- {{objective}} -->
-                        </v-col>
-                      </h4>
-                    </v-flex>
+                          <h4>
+                            <v-radio-group
+                              v-model="sourceData.objective"
+                              :rules="[v => !!v || 'Please select one']"
+                              column
+                            >
+                              <v-radio
+                                v-for="checkbox in check"
+                                :key="checkbox.id"
+                                :label="checkbox.title"
+                                :value="checkbox.value"
+                              />
+                              <v-radio
+                                :label="$t('others')"
+                                value="other"
+                              />
+                            </v-radio-group>
+
+                            <v-text-field
+                              v-if="sourceData.objective === 'other'"
+                              v-model="objective_other"
+                              :placeholder="$t('pleaseSpecify')"
+                              :rules="Rules"
+                              outlined
+                              dense
+                              required
+                            />
+                          </h4>
+                        </v-flex>
 
                     <v-flex xs12 sm12 md3 offset-md1>
                       <v-subheader
@@ -1092,34 +1093,34 @@
                       >
                     </v-flex>
                     <v-flex xs12 sm12 md7>
-                      <h4>
-                        <v-checkbox
-                          v-for="format in data_format"
-                          :key="format.id"
-                          v-model="selectedItem.data_storage"
-                          :label="format.title"
-                          :value="format.value"
-                          multiple
-                          hide-details
-                        ></v-checkbox>
+                          <h4>
+                            <v-checkbox
+                              v-for="format in data_format"
+                              :key="format.id"
+                              v-model="sourceData.data_storage"
+                              :label="format.title"
+                              :value="format.value"
+                              multiple
+                              hide-details
+                            ></v-checkbox>
 
-                        <v-checkbox
-                          v-model="enabled2"
-                          :label="$t('others')"
-                          hide-details
-                        ></v-checkbox>
-                        <v-col cols="12">
-                          <v-text-field
-                            :disabled="!enabled2"
-                            :placeholder="$t('pleaseSpecify')"
-                            v-model="selectedItem.data_storage_other"
-                            outlined
-                            dense
-                            required
-                          ></v-text-field>
-                        </v-col>
-                      </h4>
-                    </v-flex>
+                            <v-checkbox
+                              v-model="enabled2"
+                              :label="$t('others')"
+                              hide-details
+                            ></v-checkbox>
+                            <v-col cols="12">
+                              <v-text-field
+                                :disabled="!enabled2"
+                                :placeholder="$t('pleaseSpecify')"
+                                v-model="data_storage_other"
+                                outlined
+                                dense
+                                :rules="Rules" required
+                              ></v-text-field>
+                            </v-col>
+                          </h4>
+                        </v-flex>
 
                     <v-flex xs12 sm12 md3 offset-md1>
                       <v-subheader
@@ -1763,33 +1764,35 @@
                       >
                     </v-flex>
                     <v-flex xs12 sm12 md7>
-                      <h4>
-                        <v-checkbox
-                          v-for="checkbox in check"
-                          :key="checkbox.id"
-                          v-model="selectedItem.objective"
-                          :value="checkbox.value"
-                          :label="checkbox.title"
-                          hide-details
-                        ></v-checkbox>
-                        <v-checkbox
-                          v-model="enabled1"
-                          :label="$t('others')"
-                          hide-details
-                        ></v-checkbox>
-                        <v-col cols="12">
-                          <v-text-field
-                            :disabled="!enabled1"
-                            :placeholder="$t('pleaseSpecify')"
-                            v-model="selectedItem.objective_other"
-                            outlined
-                            dense
-                            required
-                          ></v-text-field>
-                          <!-- {{objective}} -->
-                        </v-col>
-                      </h4>
-                    </v-flex>
+                          <h4>
+                            <v-radio-group
+                              v-model="sourceData.objective"
+                              :rules="[v => !!v || 'Please select one']"
+                              column
+                            >
+                              <v-radio
+                                v-for="checkbox in check"
+                                :key="checkbox.id"
+                                :label="checkbox.title"
+                                :value="checkbox.value"
+                              />
+                              <v-radio
+                                :label="$t('others')"
+                                value="other"
+                              />
+                            </v-radio-group>
+
+                            <v-text-field
+                              v-if="sourceData.objective === 'other'"
+                              v-model="objective_other"
+                              :placeholder="$t('pleaseSpecify')"
+                              :rules="Rules"
+                              outlined
+                              dense
+                              required
+                            />
+                          </h4>
+                        </v-flex>
 
                     <v-flex xs12 sm12 md3 offset-md1>
                       <v-subheader
@@ -1868,34 +1871,34 @@
                       >
                     </v-flex>
                     <v-flex xs12 sm12 md7>
-                      <h4>
-                        <v-checkbox
-                          v-for="format in data_format"
-                          :key="format.id"
-                          v-model="selectedItem.data_storage"
-                          :label="format.title"
-                          :value="format.value"
-                          multiple
-                          hide-details
-                        ></v-checkbox>
+                          <h4>
+                            <v-checkbox
+                              v-for="format in data_format"
+                              :key="format.id"
+                              v-model="sourceData.data_storage"
+                              :label="format.title"
+                              :value="format.value"
+                              multiple
+                              hide-details
+                            ></v-checkbox>
 
-                        <v-checkbox
-                          v-model="enabled2"
-                          :label="$t('others')"
-                          hide-details
-                        ></v-checkbox>
-                        <v-col cols="12">
-                          <v-text-field
-                            :disabled="!enabled2"
-                            :placeholder="$t('pleaseSpecify')"
-                            v-model="selectedItem.data_storage_other"
-                            outlined
-                            dense
-                            required
-                          ></v-text-field>
-                        </v-col>
-                      </h4>
-                    </v-flex>
+                            <v-checkbox
+                              v-model="enabled2"
+                              :label="$t('others')"
+                              hide-details
+                            ></v-checkbox>
+                            <v-col cols="12">
+                              <v-text-field
+                                :disabled="!enabled2"
+                                :placeholder="$t('pleaseSpecify')"
+                                v-model="data_storage_other"
+                                outlined
+                                dense
+                                :rules="Rules" required
+                              ></v-text-field>
+                            </v-col>
+                          </h4>
+                        </v-flex>
 
                     <v-flex xs12 sm12 md3 offset-md1>
                       <v-subheader
@@ -2548,33 +2551,35 @@
                       >
                     </v-flex>
                     <v-flex xs12 sm12 md7>
-                      <h4>
-                        <v-checkbox
-                          v-for="checkbox in check"
-                          :key="checkbox.id"
-                          v-model="selectedItem.objective"
-                          :value="checkbox.value"
-                          :label="checkbox.title"
-                          hide-details
-                        ></v-checkbox>
-                        <v-checkbox
-                          v-model="enabled1"
-                          :label="$t('others')"
-                          hide-details
-                        ></v-checkbox>
-                        <v-col cols="12">
-                          <v-text-field
-                            :disabled="!enabled1"
-                            :placeholder="$t('pleaseSpecify')"
-                            v-model="selectedItem.objective_other"
-                            outlined
-                            dense
-                            required
-                          ></v-text-field>
-                          <!-- {{objective}} -->
-                        </v-col>
-                      </h4>
-                    </v-flex>
+                          <h4>
+                            <v-radio-group
+                              v-model="sourceData.objective"
+                              :rules="[v => !!v || 'Please select one']"
+                              column
+                            >
+                              <v-radio
+                                v-for="checkbox in check"
+                                :key="checkbox.id"
+                                :label="checkbox.title"
+                                :value="checkbox.value"
+                              />
+                              <v-radio
+                                :label="$t('others')"
+                                value="other"
+                              />
+                            </v-radio-group>
+
+                            <v-text-field
+                              v-if="sourceData.objective === 'other'"
+                              v-model="objective_other"
+                              :placeholder="$t('pleaseSpecify')"
+                              :rules="Rules"
+                              outlined
+                              dense
+                              required
+                            />
+                          </h4>
+                        </v-flex>
 
                     <v-flex xs12 sm12 md3 offset-md1>
                       <v-subheader
@@ -2653,35 +2658,35 @@
                         ></v-subheader
                       >
                     </v-flex>
-                    <v-flex xs12 sm12 md7>
-                      <h4>
-                        <v-checkbox
-                          v-for="format in data_format"
-                          :key="format.id"
-                          v-model="selectedItem.data_storage"
-                          :label="format.title"
-                          :value="format.value"
-                          multiple
-                          hide-details
-                        ></v-checkbox>
+                   <v-flex xs12 sm12 md7>
+                          <h4>
+                            <v-checkbox
+                              v-for="format in data_format"
+                              :key="format.id"
+                              v-model="sourceData.data_storage"
+                              :label="format.title"
+                              :value="format.value"
+                              multiple
+                              hide-details
+                            ></v-checkbox>
 
-                        <v-checkbox
-                          v-model="enabled2"
-                          :label="$t('others')"
-                          hide-details
-                        ></v-checkbox>
-                        <v-col cols="12">
-                          <v-text-field
-                            :disabled="!enabled2"
-                            :placeholder="$t('pleaseSpecify')"
-                            v-model="selectedItem.data_storage_other"
-                            outlined
-                            dense
-                            required
-                          ></v-text-field>
-                        </v-col>
-                      </h4>
-                    </v-flex>
+                            <v-checkbox
+                              v-model="enabled2"
+                              :label="$t('others')"
+                              hide-details
+                            ></v-checkbox>
+                            <v-col cols="12">
+                              <v-text-field
+                                :disabled="!enabled2"
+                                :placeholder="$t('pleaseSpecify')"
+                                v-model="data_storage_other"
+                                outlined
+                                dense
+                                :rules="Rules" required
+                              ></v-text-field>
+                            </v-col>
+                          </h4>
+                        </v-flex>
 
                     <v-flex xs12 sm12 md3 offset-md1>
                       <v-subheader
@@ -3307,34 +3312,34 @@
                       >
                     </v-flex>
                     <v-flex xs12 sm12 md7>
-                      <h4>
-                        <v-checkbox
-                          v-for="format in data_format"
-                          :key="format.id"
-                          v-model="selectedItem.data_storage"
-                          :label="format.title"
-                          :value="format.value"
-                          multiple
-                          hide-details
-                        ></v-checkbox>
+                          <h4>
+                            <v-checkbox
+                              v-for="format in data_format"
+                              :key="format.id"
+                              v-model="sourceData.data_storage"
+                              :label="format.title"
+                              :value="format.value"
+                              multiple
+                              hide-details
+                            ></v-checkbox>
 
-                        <v-checkbox
-                          v-model="enabled2"
-                          :label="$t('others')"
-                          hide-details
-                        ></v-checkbox>
-                        <v-col cols="12">
-                          <v-text-field
-                            :disabled="!enabled2"
-                            :placeholder="$t('pleaseSpecify')"
-                            v-model="selectedItem.data_storage_other"
-                            outlined
-                            dense
-                            required
-                          ></v-text-field>
-                        </v-col>
-                      </h4>
-                    </v-flex>
+                            <v-checkbox
+                              v-model="enabled2"
+                              :label="$t('others')"
+                              hide-details
+                            ></v-checkbox>
+                            <v-col cols="12">
+                              <v-text-field
+                                :disabled="!enabled2"
+                                :placeholder="$t('pleaseSpecify')"
+                                v-model="data_storage_other"
+                                outlined
+                                dense
+                                :rules="Rules" required
+                              ></v-text-field>
+                            </v-col>
+                          </h4>
+                        </v-flex>
 
                     <v-flex xs12 sm12 md3 offset-md1>
                       <v-subheader
